@@ -2,7 +2,7 @@ import React from "react";
 import DownloadButton from "../sm/DownloadButton";
 import BackToRegenerate from "../sm/BackToRegenerate";
 import Qr from "../sm/Qr";
-const ResultForm = (url, fgColor, bgColor) => {
+const ResultForm = ({ url, fgColor, bgColor }) => {
   return (
     <form className="bg-white shadow-md rounded-lg p-6 w-full max-w-md flex flex-col items-center">
       {/* Contenedor del QR */}

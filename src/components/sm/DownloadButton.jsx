@@ -13,6 +13,7 @@ const DownloadButton = () => {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
+    localStorage.setItem("qrVisible", false);
   };
   return (
     <button

@@ -3,9 +3,9 @@ import React from "react";
 const BackToRegenerate = () => {
   // Maneja la acción de volver a generar el QR
   const handleRegenerate = () => {
-    setQrVisible(false); // Oculta el QR y muestra el formulario
-    setUrl(""); // Resetea la URL
+    localStorage.setItem("qrVisible", false);
   };
+
   return (
     <button
       onClick={handleRegenerate}

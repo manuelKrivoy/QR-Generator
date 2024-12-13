@@ -1,24 +1,36 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
 import ResultForm from "./components/med/ResultForm";
 import GenerateForm from "./components/med/GenerateForm";
+import DarkModeButton from "./components/sm/DarkModeButton";
 
 const App = () => {
-  // Estados para manejar la URL, la visibilidad del QR y los colores personalizados
-  const [url, setUrl] = useState(""); // Almacena la URL ingresada
-  const [qrVisible, setQrVisible] = useState(false); // Controla si el QR debe mostrarse
+  const { darkMode } = useContext(ThemeContext);
+  const [qrVisible, setQrVisible] = useState(false); // Visibilidad del QR
+  const [url, setUrl] = useState(""); // URL ingresada
   const [fgColor, setFgColor] = useState("#000000"); // Color del QR
-  const [bgColor, setBgColor] = useState("#ffffff"); // Color de fondo del QR
+  const [bgColor, setBgColor] = useState("#ffffff"); // Fondo del QR
 
-  // Maneja el envío del formulario para generar el QR
+  useEffect(() => {
+    // Carga inicial del estado de visibilidad del QR
+    const qrStatus = JSON.parse(localStorage.getItem("qrVisible")) || false;
+    setQrVisible(qrStatus);
+  }, []);
+
   const handleSubmit = (e) => {
-    e.preventDefault(); // Previene el comportamiento por defecto del formulario
-    setQrVisible(true); // Muestra el QR después del envío
+    e.preventDefault();
+    setQrVisible(true);
+    localStorage.setItem("qrVisible", true);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Generador de QR</h1>
+    <div
+      className={`flex flex-col items-center justify-center min-h-screen p-6 ${
+        darkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-800"
+      }`}
+    >
+      <DarkModeButton />
+      <h1 className="text-3xl font-bold mb-6">Generador de QR</h1>
 
       {!qrVisible && (
         <GenerateForm
@@ -31,8 +43,7 @@ const App = () => {
           handleSubmit={handleSubmit}
         />
       )}
-      {/* Sección para mostrar el QR generado */}
-      {qrVisible && url && <ResultForm url={url} fgColor={fgColor} bgColor={bgColor} />}
+      {qrVisible && <ResultForm url={url} fgColor={fgColor} bgColor={bgColor} />}
     </div>
   );
 };
