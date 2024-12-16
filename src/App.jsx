@@ -36,17 +36,20 @@ const App = () => {
       <h1 className="text-3xl font-bold mb-6">Generador de QR</h1>
 
       {!qrVisible && (
-        <GenerateForm
-          url={url}
-          setUrl={setUrl}
-          fgColor={fgColor}
-          setFgColor={setFgColor}
-          bgColor={bgColor}
-          setBgColor={setBgColor}
-          handleSubmit={handleSubmit}
-        />
+        <div>
+          <GenerateForm
+            url={url}
+            setUrl={setUrl}
+            fgColor={fgColor}
+            setFgColor={setFgColor}
+            bgColor={bgColor}
+            setBgColor={setBgColor}
+            handleSubmit={handleSubmit}
+          />
+          <History />
+        </div>
       )}
-      <History />
+
       {qrVisible && <ResultForm url={url} fgColor={fgColor} bgColor={bgColor} />}
     </div>
   );
