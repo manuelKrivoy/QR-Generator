@@ -29,10 +29,6 @@ const History = () => {
                   <Qr url={qr.url} fgColor={qr.fgColor} bgColor={qr.bgColor} />
                 </div>
 
-                <a href={qr.url} target="_blank">
-                  {qr.url}
-                </a>
-
                 <div className="text-sm text-gray-700">
                   <p>
                     <strong>URL:</strong> {qr.url}
