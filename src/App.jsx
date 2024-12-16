@@ -3,13 +3,15 @@ import { ThemeContext } from "./context/ThemeContext";
 import ResultForm from "./components/med/ResultForm";
 import GenerateForm from "./components/med/GenerateForm";
 import DarkModeButton from "./components/sm/DarkModeButton";
-
+import { HistoryContext } from "./context/HistoryContext";
+import History from "./components/med/History";
 const App = () => {
   const { darkMode } = useContext(ThemeContext);
   const [qrVisible, setQrVisible] = useState(false); // Visibilidad del QR
   const [url, setUrl] = useState(""); // URL ingresada
   const [fgColor, setFgColor] = useState("#000000"); // Color del QR
   const [bgColor, setBgColor] = useState("#ffffff"); // Fondo del QR
+  const { addQr } = useContext(HistoryContext);
 
   useEffect(() => {
     // Carga inicial del estado de visibilidad del QR
@@ -21,6 +23,7 @@ const App = () => {
     e.preventDefault();
     setQrVisible(true);
     localStorage.setItem("qrVisible", true);
+    addQr({ url, fgColor, bgColor });
   };
 
   return (
@@ -43,6 +46,7 @@ const App = () => {
           handleSubmit={handleSubmit}
         />
       )}
+      <History />
       {qrVisible && <ResultForm url={url} fgColor={fgColor} bgColor={bgColor} />}
     </div>
   );

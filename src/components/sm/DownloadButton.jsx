@@ -41,8 +41,8 @@ const DownloadButton = () => {
 
       const gradient = context.createLinearGradient(0, 0, 0, canvasHeight);
 
-      gradient.addColorStop(0, randomGradient[0]); // Verde.
-      gradient.addColorStop(1, randomGradient[1]); // Verde claro.
+      gradient.addColorStop(0, randomGradient[0]);
+      gradient.addColorStop(1, randomGradient[1]);
       context.fillStyle = gradient;
       context.fillRect(0, 0, canvasWidth, canvasHeight);
 
