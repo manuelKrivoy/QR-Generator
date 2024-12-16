@@ -2,8 +2,21 @@ import React from "react";
 
 const DownloadButton = () => {
   const randomGradientes = [
-    ["#", "#"],
-    ["#", "#"],
+    ["#FF5733", "#FFC300"], // Rojo anaranjado -> Amarillo cálido
+    ["#4CAF50", "#81C784"], // Verde oscuro -> Verde claro
+    ["#2196F3", "#90CAF9"], // Azul vibrante -> Azul claro
+    ["#673AB7", "#D1C4E9"], // Púrpura intenso -> Lavanda suave
+    ["#E91E63", "#F48FB1"], // Rosado oscuro -> Rosa pálido
+    ["#FF9800", "#FFCC80"], // Naranja -> Naranja claro
+    ["#3F51B5", "#9FA8DA"], // Azul profundo -> Azul pastel
+    ["#009688", "#80CBC4"], // Verde agua -> Verde agua claro
+    ["#795548", "#D7CCC8"], // Marrón oscuro -> Beige claro
+    ["#607D8B", "#CFD8DC"], // Gris azulado -> Gris claro
+    ["#FF6F61", "#FFD54F"], // Coral -> Amarillo pastel
+    ["#00695C", "#26A69A"], // Verde bosque -> Verde menta
+    ["#880E4F", "#F06292"], // Vino tinto -> Rosa vibrante
+    ["#1E88E5", "#64B5F6"], // Azul rey -> Azul cielo
+    ["#43A047", "#A5D6A7"], // Verde esmeralda -> Verde suave
   ];
   const handleDownload = () => {
     const svg = document.querySelector("svg");
@@ -24,10 +37,12 @@ const DownloadButton = () => {
     const img = new Image();
     img.onload = () => {
       // Fondo con degradado.
+      const randomGradient = randomGradientes[Math.floor(Math.random() * randomGradientes.length)];
+
       const gradient = context.createLinearGradient(0, 0, 0, canvasHeight);
 
-      gradient.addColorStop(0, "#4caf50"); // Verde.
-      gradient.addColorStop(1, "#81c784"); // Verde claro.
+      gradient.addColorStop(0, randomGradient[0]); // Verde.
+      gradient.addColorStop(1, randomGradient[1]); // Verde claro.
       context.fillStyle = gradient;
       context.fillRect(0, 0, canvasWidth, canvasHeight);
 
