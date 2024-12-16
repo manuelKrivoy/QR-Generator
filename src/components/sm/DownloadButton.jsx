@@ -1,6 +1,10 @@
 import React from "react";
 
 const DownloadButton = () => {
+  const randomGradientes = [
+    ["#", "#"],
+    ["#", "#"],
+  ];
   const handleDownload = () => {
     const svg = document.querySelector("svg");
     const serializer = new XMLSerializer();
@@ -21,6 +25,7 @@ const DownloadButton = () => {
     img.onload = () => {
       // Fondo con degradado.
       const gradient = context.createLinearGradient(0, 0, 0, canvasHeight);
+
       gradient.addColorStop(0, "#4caf50"); // Verde.
       gradient.addColorStop(1, "#81c784"); // Verde claro.
       context.fillStyle = gradient;
@@ -36,8 +41,6 @@ const DownloadButton = () => {
       const qrSize = 300;
       const qrX = (canvasWidth - qrSize) / 2;
       const qrY = 100;
-      context.fillStyle = "#ffffff";
-      context.fillRect(qrX - 10, qrY - 10, qrSize + 20, qrSize + 20); // Margen alrededor del QR.
 
       // Dibuja el QR.
       context.drawImage(img, qrX, qrY, qrSize, qrSize);
